@@ -211,7 +211,9 @@ In this step, we conduct Gene Ontology (GO) enrichment analysis to identify biol
 ```{r go-clusterProfiler-overall, fig.width = 15, fig.height = 8, fig.fullwidth = TRUE, echo=TRUE}
 all.markers_overall <- read.csv(markers_file_overall, sep = "\t", header = TRUE)
 top_n_value_overall <- all.markers_overall %>% 
-  group_by(cluster) 
+  group_by(cluster) %>%
+  dplyr::filter(p_val < 1e-05) %>%
+  dplyr::filter(abs(avg_log2FC) > 1) 
 
 ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
                                                      OrgDb_value = OrgDb_value, 
@@ -225,7 +227,9 @@ ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_v
 ```{r go-clusterProfiler-condition-value1, fig.width = 15, fig.height = 8, fig.fullwidth = TRUE, echo=TRUE}
 all.markers_condition_value1 <- read.csv(markers_file_condition_value1, sep = "\t", header = TRUE)
 top_n_value_condition_value1 <- all.markers_condition_value1 %>% 
-  group_by(cluster) #%>% 
+  group_by(cluster) %>%
+  dplyr::filter(p_val < 1e-05) %>%
+  dplyr::filter(abs(avg_log2FC) > 1) 
 
 ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
                                                      OrgDb_value = OrgDb_value, 
@@ -245,7 +249,9 @@ if (!is.null(condition_value2)) {
   
   all.markers_condition_value2 <- read.csv(markers_file_condition_value2, sep = "\t", header = TRUE)
   top_n_value_condition_value2 <- all.markers_condition_value2 %>% 
-    group_by(cluster) #%>% 
+    group_by(cluster) %>%
+    dplyr::filter(p_val < 1e-05) %>%
+    dplyr::filter(abs(avg_log2FC) > 1) 
 
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
                                                      OrgDb_value = OrgDb_value, 
@@ -266,7 +272,9 @@ if (!is.null(condition_value3)) {
   
   all.markers_condition_value3 <- read.csv(markers_file_condition_value3, sep = "\t", header = TRUE)
   top_n_value_condition_value3 <- all.markers_condition_value3 %>% 
-    group_by(cluster)
+    group_by(cluster) %>%
+    dplyr::filter(p_val < 1e-05) %>%
+    dplyr::filter(abs(avg_log2FC) > 1) 
     
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
                                                      OrgDb_value = OrgDb_value, 
