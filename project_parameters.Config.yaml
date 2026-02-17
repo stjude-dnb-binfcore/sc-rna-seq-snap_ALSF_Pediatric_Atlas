@@ -158,7 +158,7 @@ OrgDb_value: "org.Mm.eg.db"   # Options for gene annotation: (1) Human: "org.Hs.
 # If you include universe:
 # (1) Background matches experiment: results are usually more conservative and more interpretable
 # Having said that, during testing this turned out zero significant pathways
-universe_value_module: NULL # Options: NULL (default) or names(geneList)
+universe_value_module: universe_ids # Options: NULL (default) or universe_ids (If not NULL, enrichment is run against all genes in this universe.)
 show_number_pathways_value_module: 20 # Number of top pathways to show in the dot plot visualization
 
 
