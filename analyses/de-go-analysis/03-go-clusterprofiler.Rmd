@@ -215,17 +215,25 @@ top_n_value_overall <- all.markers_overall %>%
   dplyr::filter(p_val < 1e-05) %>%
   dplyr::filter(abs(avg_log2FC) > 1) 
 
-# Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-# If not NULL, enrichment is run against all genes in this universe.
-universe_ids <- all.markers_overall$gene
-universe_ids <- as.character(universe_ids)
-universe_ids <- universe_ids[!is.na(universe_ids) & universe_ids != ""]
+if (universe_value == "NO"){
+  ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
+                                                       OrgDb_value = OrgDb_value, 
+                                                       plots_dir = go_plots_dir_overall,
+                                                       universe_value = NULL,
+                                                       show_number_pathways = show_number_pathways)
+  } else {
+    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
+    # If not NULL, enrichment is run against all genes in this universe.
+    geneList <- all.markers_overall$gene
+    geneList <- as.character(geneList)
+    geneList <- geneList[!is.na(geneList) & geneList != ""]
 
-ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
-                                                     OrgDb_value = OrgDb_value, 
-                                                     plots_dir = go_plots_dir_overall,
-                                                     universe_value = universe_value,
-                                                     show_number_pathways = show_number_pathways)
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
+                                                         OrgDb_value = OrgDb_value, 
+                                                         plots_dir = go_plots_dir_overall,
+                                                         universe_value = names(geneList),
+                                                         show_number_pathways = show_number_pathways)
+  }
 ```
 
 ## Per `r condition_value1`
@@ -237,17 +245,25 @@ top_n_value_condition_value1 <- all.markers_condition_value1 %>%
   dplyr::filter(p_val < 1e-05) %>%
   dplyr::filter(abs(avg_log2FC) > 1) 
 
-# Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-# If not NULL, enrichment is run against all genes in this universe.
-universe_ids <- all.markers_condition_value1$gene
-universe_ids <- as.character(universe_ids)
-universe_ids <- universe_ids[!is.na(universe_ids) & universe_ids != ""]
+if (universe_value == "NO"){
+  ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
+                                                       OrgDb_value = OrgDb_value, 
+                                                       plots_dir = go_plots_dir_overall,
+                                                       universe_value = NULL,
+                                                       show_number_pathways = show_number_pathways)
+  } else {
+    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
+    # If not NULL, enrichment is run against all genes in this universe.
+    geneList <- all.markers_condition_value1$gene
+    geneList <- as.character(geneList)
+    geneList <- geneList[!is.na(geneList) & geneList != ""]
 
-ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
-                                                     OrgDb_value = OrgDb_value, 
-                                                     plots_dir = go_plots_dir_condition_value1,
-                                                     universe_value = universe_value,
-                                                     show_number_pathways = show_number_pathways)
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
+                                                         OrgDb_value = OrgDb_value, 
+                                                         plots_dir = go_plots_dir_condition_value1,
+                                                         universe_value = names(geneList),
+                                                         show_number_pathways = show_number_pathways)
+  }
 ```
 
 ## Per `r condition_value2`
@@ -265,17 +281,25 @@ if (!is.null(condition_value2)) {
     dplyr::filter(p_val < 1e-05) %>%
     dplyr::filter(abs(avg_log2FC) > 1) 
   
-  # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-  # If not NULL, enrichment is run against all genes in this universe.
-  universe_ids <- all.markers_condition_value2$gene
-  universe_ids <- as.character(universe_ids)
-  universe_ids <- universe_ids[!is.na(universe_ids) & universe_ids != ""]
-
+  if (universe_value == "NO"){
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
-                                                     OrgDb_value = OrgDb_value, 
-                                                     plots_dir = go_plots_dir_condition_value2,
-                                                     universe_value = universe_value,
-                                                     show_number_pathways = show_number_pathways)
+                                                       OrgDb_value = OrgDb_value, 
+                                                       plots_dir = go_plots_dir_overall,
+                                                       universe_value = NULL,
+                                                       show_number_pathways = show_number_pathways)
+  } else {
+    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
+    # If not NULL, enrichment is run against all genes in this universe.
+    geneList <- all.markers_condition_value2$gene
+    geneList <- as.character(geneList)
+    geneList <- geneList[!is.na(geneList) & geneList != ""]
+
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
+                                                         OrgDb_value = OrgDb_value, 
+                                                         plots_dir = go_plots_dir_condition_value2,
+                                                         universe_value = names(geneList),
+                                                         show_number_pathways = show_number_pathways)
+  }
 }
 ```
 
@@ -294,18 +318,25 @@ if (!is.null(condition_value3)) {
     dplyr::filter(p_val < 1e-05) %>%
     dplyr::filter(abs(avg_log2FC) > 1) 
   
-  # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-  # If not NULL, enrichment is run against all genes in this universe.
-  universe_ids <- all.markers_condition_value3$gene
-  universe_ids <- as.character(universe_ids)
-  universe_ids <- universe_ids[!is.na(universe_ids) & universe_ids != ""]
-
-    
+  if (universe_value == "NO"){
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
-                                                     OrgDb_value = OrgDb_value, 
-                                                     plots_dir = go_plots_dir_condition_value3,
-                                                     universe_value = universe_value,
-                                                     show_number_pathways = show_number_pathways)
+                                                       OrgDb_value = OrgDb_value, 
+                                                       plots_dir = go_plots_dir_overall,
+                                                       universe_value = NULL,
+                                                       show_number_pathways = show_number_pathways)
+  } else {
+    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
+    # If not NULL, enrichment is run against all genes in this universe.
+    geneList <- all.markers_condition_value3$gene
+    geneList <- as.character(geneList)
+    geneList <- geneList[!is.na(geneList) & geneList != ""]
+
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
+                                                         OrgDb_value = OrgDb_value, 
+                                                         plots_dir = go_plots_dir_condition_value3,
+                                                         universe_value = names(geneList),
+                                                         show_number_pathways = show_number_pathways)
+  }
 }
 ```
 
