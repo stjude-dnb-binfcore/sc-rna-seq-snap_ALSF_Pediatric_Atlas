@@ -5,7 +5,7 @@
 #' @param OrgDb_value Annotation database (e.g., org.Hs.eg.db)
 #' @param plots_dir Directory to save plots
 #' @param pval_cutoff Adjusted p-value cutoff (default = 0.05)
-#' @param qval_cutoff q-value cutoff (default = 0.05)
+#' @param qval_cutoff q-value cutoff (default = 0.01)
 #' @param ontology GO ontology: "BP", "MF", or "CC"
 #' @param key_type Gene ID type ("ENSEMBL", "SYMBOL", etc.)
 #' @param universe_value 
@@ -20,7 +20,7 @@ run_clusterwise_GO_enrichment_markers <- function(closest_genes_all,
                                           OrgDb_value,
                                           plots_dir,
                                           pval_cutoff = 0.05,
-                                          qval_cutoff = 0.05,
+                                          qval_cutoff = 0.01,
                                           ontology = "BP",
                                           key_type = "ENSEMBL",
                                           universe_value = universe_value,
