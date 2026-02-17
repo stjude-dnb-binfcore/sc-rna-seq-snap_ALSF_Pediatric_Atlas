@@ -157,7 +157,6 @@ OrgDb_value: "org.Mm.eg.db"   # Options for gene annotation: (1) Human: "org.Hs.
 # (2) Can introduce bias from genes never detectable in your assay
 # If you include universe:
 # (1) Background matches experiment: results are usually more conservative and more interpretable
-# Having said that, during testing this turned out zero significant pathways
 universe_value_module: "YES" # Options: "YES" (If YES, enrichment is run against all genes in the universe) or "NO" (default)
 show_number_pathways_value_module: 20 # Number of top pathways to show in the dot plot visualization
 

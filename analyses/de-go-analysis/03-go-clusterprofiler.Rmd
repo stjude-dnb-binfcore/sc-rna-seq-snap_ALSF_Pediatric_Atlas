@@ -205,7 +205,24 @@ a4height <- 11.7
 
 In this step, we conduct Gene Ontology (GO) enrichment analysis to identify biological processes associated with cell-type-specific expression changes (e.g., differential expression). Using the [clusterProfiler](https://bioconductor.org/packages/devel/bioc/html/clusterProfiler.html) package, we assess whether any GO terms are significantly enriched among these gene sets. This approach helps interpret the possible functional implications of differential expression across clusters, i.e., predicted cell type.
 
+**GO enrichment background (universe)**
 
+When a universe is provided:
+   - Enrichment is calculated relative to the genes that were actually measurable and eligible in this experiment (e.g., all genes expressed above a threshold or all genes tested in DE).
+
+When a universe is NOT provided:
+   - Enrichment is calculated relative to all genes in the organism database.
+   - This can inflate significance and introduce bias, especially in scRNA-seq, where many genes are never detected.
+
+Summary:
+
+   - Without universe:
+       (1) Broader background → p-values may appear overly significant
+       (2) Includes genes not detectable in the assay
+   - With universe:
+       (1) Background matches the experiment
+       (2) Results are typically more conservative and more interpretable
+       
 ## Overall
 
 ```{r go-clusterProfiler-overall, fig.width = 15, fig.height = 8, fig.fullwidth = TRUE, echo=TRUE}
@@ -216,14 +233,14 @@ top_n_value_overall <- all.markers_overall %>%
   dplyr::filter(abs(avg_log2FC) > 1) 
 
 if (universe_value == "NO"){
+  cat("Running GO analysis without universe", "\n")
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
                                                        OrgDb_value = OrgDb_value, 
                                                        plots_dir = go_plots_dir_overall,
                                                        universe_value = NULL,
                                                        show_number_pathways = show_number_pathways)
   } else {
-    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-    # If not NULL, enrichment is run against all genes in this universe.
+    cat("Running GO analysis with universe", "\n")
     geneList <- all.markers_overall$gene
     geneList <- as.character(geneList)
     geneList <- geneList[!is.na(geneList) & geneList != ""]
@@ -246,14 +263,14 @@ top_n_value_condition_value1 <- all.markers_condition_value1 %>%
   dplyr::filter(abs(avg_log2FC) > 1) 
 
 if (universe_value == "NO"){
+  cat("Running GO analysis without universe", "\n")
   ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
                                                        OrgDb_value = OrgDb_value, 
                                                        plots_dir = go_plots_dir_overall,
                                                        universe_value = NULL,
                                                        show_number_pathways = show_number_pathways)
   } else {
-    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-    # If not NULL, enrichment is run against all genes in this universe.
+    cat("Running GO analysis with universe", "\n")
     geneList <- all.markers_condition_value1$gene
     geneList <- as.character(geneList)
     geneList <- geneList[!is.na(geneList) & geneList != ""]
@@ -282,14 +299,14 @@ if (!is.null(condition_value2)) {
     dplyr::filter(abs(avg_log2FC) > 1) 
   
   if (universe_value == "NO"){
-  ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
+    cat("Running GO analysis without universe", "\n")
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
                                                        OrgDb_value = OrgDb_value, 
                                                        plots_dir = go_plots_dir_overall,
                                                        universe_value = NULL,
                                                        show_number_pathways = show_number_pathways)
   } else {
-    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-    # If not NULL, enrichment is run against all genes in this universe.
+   cat("Running GO analysis with universe", "\n")
     geneList <- all.markers_condition_value2$gene
     geneList <- as.character(geneList)
     geneList <- geneList[!is.na(geneList) & geneList != ""]
@@ -319,14 +336,14 @@ if (!is.null(condition_value3)) {
     dplyr::filter(abs(avg_log2FC) > 1) 
   
   if (universe_value == "NO"){
-  ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
+    cat("Running GO analysis without universe", "\n")
+    ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
                                                        OrgDb_value = OrgDb_value, 
                                                        plots_dir = go_plots_dir_overall,
                                                        universe_value = NULL,
                                                        show_number_pathways = show_number_pathways)
   } else {
-    # Gene universe used for GO enrichment when `universe_value_module` is provided (see YAML).
-    # If not NULL, enrichment is run against all genes in this universe.
+    cat("Running GO analysis with universe", "\n")
     geneList <- all.markers_condition_value3$gene
     geneList <- as.character(geneList)
     geneList <- geneList[!is.na(geneList) & geneList != ""]
