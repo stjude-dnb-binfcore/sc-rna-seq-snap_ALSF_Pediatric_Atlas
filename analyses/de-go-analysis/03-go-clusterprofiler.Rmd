@@ -248,7 +248,7 @@ if (universe_value == "NO"){
     ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_overall, 
                                                          OrgDb_value = OrgDb_value, 
                                                          plots_dir = go_plots_dir_overall,
-                                                         universe_value = names(geneList),
+                                                         universe_value = geneList,
                                                          show_number_pathways = show_number_pathways)
   }
 ```
@@ -278,7 +278,7 @@ if (universe_value == "NO"){
     ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value1, 
                                                          OrgDb_value = OrgDb_value, 
                                                          plots_dir = go_plots_dir_condition_value1,
-                                                         universe_value = names(geneList),
+                                                         universe_value = geneList,
                                                          show_number_pathways = show_number_pathways)
   }
 ```
@@ -314,7 +314,7 @@ if (!is.null(condition_value2)) {
     ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value2, 
                                                          OrgDb_value = OrgDb_value, 
                                                          plots_dir = go_plots_dir_condition_value2,
-                                                         universe_value = names(geneList),
+                                                         universe_value = geneList,
                                                          show_number_pathways = show_number_pathways)
   }
 }
@@ -351,7 +351,7 @@ if (!is.null(condition_value3)) {
     ego_results <- run_clusterwise_GO_enrichment_markers(closest_genes_all = top_n_value_condition_value3, 
                                                          OrgDb_value = OrgDb_value, 
                                                          plots_dir = go_plots_dir_condition_value3,
-                                                         universe_value = names(geneList),
+                                                         universe_value = geneList,
                                                          show_number_pathways = show_number_pathways)
   }
 }
