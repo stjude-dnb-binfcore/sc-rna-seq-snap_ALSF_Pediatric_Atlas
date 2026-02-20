@@ -280,7 +280,7 @@ if (!is.null(condition_value2)) {
   if (!dir.exists(plots_dir_condition2)) {
     dir.create(plots_dir_condition2)}
   
-  volcano_plot_results <- crete_volcano_plot(all.markers = all.markers_condition_value2, n_value = n_value, plots_dir = plots_dir_condition2)
+  volcano_plot_results <- create_volcano_plot(all.markers = all.markers_condition_value2, n_value = n_value, plots_dir = plots_dir_condition2)
 }
 ```
 
@@ -295,7 +295,7 @@ if (!is.null(condition_value3)) {
   if (!dir.exists(plots_dir_condition3)) {
     dir.create(plots_dir_condition3)}
   
-  volcano_plot_results <- crete_volcano_plot(all.markers = all.markers_condition_value3, n_value = n_value, plots_dir = plots_dir_condition3)
+  volcano_plot_results <- create_volcano_plot(all.markers = all.markers_condition_value3, n_value = n_value, plots_dir = plots_dir_condition3)
 }
 ```
 
