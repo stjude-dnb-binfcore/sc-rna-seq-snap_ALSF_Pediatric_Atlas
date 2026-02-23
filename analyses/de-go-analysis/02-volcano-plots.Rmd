@@ -158,7 +158,7 @@ Depending on the DE comparison, these genes may indicate:
 
 Genes plotted in red on the left side can represent transcriptional programs decreased or inactivated in the given cell type or the condition for the given cell type.
 
-- log2FC < 1 (lower expression in the given cell type or the condition within the given cell type, e.g. Treatment vs Control)
+- log2FC < -1 (lower expression in the given cell type or the condition within the given cell type, e.g. Treatment vs Control)
 - p-value ≤ α
 
 Depending on the DE comparison, these genes may indicate:
@@ -189,7 +189,7 @@ Note that by default the `EnhancedVolcano()` function uses a cutoff of `1e-05` f
 | **Color** | **Meaning**              | **Criteria**                                       |   **Volcano side**                                              |
 |-----------|--------------------------|----------------------------------------------------|-----------------------------------------------------------------|
 | **Red**   | Up‑regulated             | log2FC > 1 & p-value ≤ α                  |   Right side (positive log₂FC)                                  |
-| **Red**   | Down‑regulated           | log2FC < 1 & p-value ≤ α                  |   Left side (negative log₂FC)                                   |
+| **Red**   | Down‑regulated           | log2FC < -1 & p-value ≤ α                  |   Left side (negative log₂FC)                                   |
 | **Blue**  | Significant p-value only | p‑value ≤ α but log₂FC < threshold        |   log₂FC; Both sides (near 0 log₂FC)                            |
 | **Green** | High fold‑change only    | log₂FC ≥ threshold but p‑value > α        |   Left = large negative FC; Right = large positive FC           |
 | **Grey**  | Not significant          | p-value > α and log₂FC < threshold        |   Center region around log₂FC ≈ 0                               |
